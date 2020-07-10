@@ -5,16 +5,19 @@ import {
   CreateDateColumn,
 } from "typeorm"
 
-@Entity("users")
-export class User {
+@Entity("messages")
+export class Message {
   @PrimaryGeneratedColumn("uuid")
   id: string
 
-  @Column({ type: "varchar", unique: true })
-  username: string
+  @Column({ type: "varchar" })
+  message: string
 
   @Column({ type: "varchar" })
-  password: string
+  from: string
+
+  @Column({ type: "varchar" })
+  to: string
 
   @CreateDateColumn()
   createdAt: Date

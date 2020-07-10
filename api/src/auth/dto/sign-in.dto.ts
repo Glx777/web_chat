@@ -1,4 +1,6 @@
+import { SignUpDTO } from "./sign-up.dto"
+
 export class SignInDTO {
-  username: string
-  password: string
+  me: SignUpDTO
+  token: string
 }

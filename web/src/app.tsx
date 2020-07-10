@@ -4,7 +4,9 @@ import { ToastContainer, toast } from "react-toastify"
 import "normalize.css"
 import "react-toastify/dist/ReactToastify.css"
 
-import { SignUpForm } from "./auth/sign-up.form"
+import { AuthForm } from "./auth/auth.form"
+import { Chat } from "./chat/chat"
+import { useAuth } from "./hooks/use-auth"
 
 const Root = styled.div`
   width: 100%;
@@ -21,9 +23,13 @@ const toastProps = {
   draggablePercent: 25,
 }
 
-export const App = (): ReactElement => (
-  <Root>
-    <ToastContainer {...toastProps} />
-    <SignUpForm />
-  </Root>
-)
+export const App = (): ReactElement => {
+  const user = useAuth()
+
+  return (
+    <Root>
+      <ToastContainer {...toastProps} />
+      {user ? <Chat /> : <AuthForm />}
+    </Root>
+  )
+}

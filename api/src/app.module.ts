@@ -2,12 +2,13 @@ import { Module } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
 
 import { AuthModule } from "./auth/auth.module"
+import { ChatModule } from "./chat/chat.module"
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: "postgres",
-      host: "db",
+      host: "localhost",
       port: 5432,
       username: "postgres",
       password: "root",
@@ -16,6 +17,7 @@ import { AuthModule } from "./auth/auth.module"
       synchronize: true,
     }),
     AuthModule,
+    ChatModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}
