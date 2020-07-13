@@ -23,31 +23,39 @@ export const ChatMessagesContainer = ({
   selectedUser,
 }: Props): ReactElement => (
   <Container>
-    {messages.map(
-      (message: any): ReactElement => {
-        const getSender = (): string => {
-          switch (message.from) {
-            case selectedUser.id:
-              return selectedUser.username
-            case user.id:
-              return user.username
-            default:
-              return ""
-          }
+    {messages
+      .filter((message: any): boolean => {
+        if (message.from !== selectedUser.id && message.from !== user.id) {
+          return false
         }
 
-        const isSenderMe = getSender() === user.username
+        return true
+      })
+      .map(
+        (message: any): ReactElement => {
+          const getSender = (): string => {
+            switch (message.from) {
+              case selectedUser.id:
+                return selectedUser.username
+              case user.id:
+                return user.username
+              default:
+                return ""
+            }
+          }
 
-        return (
-          <Message
-            id={message.id}
-            key={message.id}
-            text={message.message}
-            username={getSender()}
-            isSenderMe={isSenderMe}
-          />
-        )
-      },
-    )}
+          const isSenderMe = getSender() === user.username
+
+          return (
+            <Message
+              id={message.id}
+              key={message.id}
+              text={message.message}
+              username={getSender()}
+              isSenderMe={isSenderMe}
+            />
+          )
+        },
+      )}
   </Container>
 )

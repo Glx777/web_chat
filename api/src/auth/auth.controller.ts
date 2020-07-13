@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Req } from "@nestjs/common"
+import { Controller, Post, Body, Get, Req, UseGuards } from "@nestjs/common"
 import { Request } from "express"
 
 import { AuthService } from "./auth.service"
@@ -7,16 +7,19 @@ import { SignUpDTO } from "./dto/sign-up.dto"
 import { SignUpInput } from "./types/sign-up.input"
 import { SignInInput } from "./types/sign-in.input"
 import { MeDTO } from "./dto/me.dto"
+import { JwtAuthGuard } from "./auth.guard"
 
 @Controller("auth")
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get("me")
-  me(@Req() request: Request): Promise<MeDTO> | never {
+  me(@Req() request: Request): Promise<MeDTO> {
     return this.authService.meAsync(request)
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get("users")
   getUsers(): Promise<MeDTO[]> {
     return this.authService.getUsersAsync()

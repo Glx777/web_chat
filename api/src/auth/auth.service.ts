@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common"
+import { InjectRepository } from "@nestjs/typeorm"
 import { JwtService } from "@nestjs/jwt"
 import * as bcrypt from "bcrypt"
-import { ExtractJwt } from "passport-jwt"
 import { Request } from "express"
 
 import { UserRepository } from "./user.repository"
@@ -12,22 +12,13 @@ import { MeDTO } from "./dto/me.dto"
 @Injectable()
 export class AuthService {
   constructor(
-    private userRepository: UserRepository,
     private jwtService: JwtService,
+    @InjectRepository(UserRepository)
+    private userRepository: UserRepository,
   ) {}
 
-  async meAsync(request: Request): Promise<MeDTO> | never {
-    const jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
-    const tokenFromRequest = jwtFromRequest(request)
-
-    const jwt = this.jwtService.verify(tokenFromRequest)
-
-    const user = await this.userRepository.findOne({ id: jwt.sub })
-
-    return {
-      id: user.id,
-      username: user.username,
-    }
+  async meAsync(request: Request): Promise<MeDTO> {
+    return request.user as MeDTO
   }
 
   async getUsersAsync(): Promise<MeDTO[]> {

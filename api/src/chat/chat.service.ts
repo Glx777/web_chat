@@ -16,9 +16,9 @@ export interface MePayload {
 @Injectable()
 export class ChatService {
   constructor(
-    private chatRepository: ChatRepository,
+    private readonly chatRepository: ChatRepository,
     @InjectRepository(UserRepository)
-    private userRepository: UserRepository,
+    private readonly userRepository: UserRepository,
   ) {}
 
   async sendMessageAsync(input: SendMessageInput): Promise<SendMessageDTO> {

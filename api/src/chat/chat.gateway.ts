@@ -7,23 +7,14 @@ import {
 } from "@nestjs/websockets"
 import { Socket, Server } from "socket.io"
 import { Logger } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-
-import { UserRepository } from "../auth/user.repository"
 
 import { ChatService } from "./chat.service"
 import { SendMessageInput } from "./types/send-message.input"
 import { GetMessagesInput } from "./types/get-message.input"
 
-const PORT = 4000
-
-@WebSocketGateway(PORT)
+@WebSocketGateway(+process.env.WEBSOCKET_PORT)
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  constructor(
-    private chatService: ChatService,
-    @InjectRepository(UserRepository)
-    private _userRepository: UserRepository,
-  ) {}
+  constructor(private readonly chatService: ChatService) {}
   @WebSocketServer() wss: Server
 
   private logger: Logger = new Logger()
@@ -45,7 +36,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage("sendMessage")
   async sendMessageAsync(
-    _client: Socket,
+    client: Socket,
     data: SendMessageInput,
   ): Promise<void> {
     const message = await this.chatService.sendMessageAsync(data)
