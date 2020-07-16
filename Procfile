@@ -1,0 +1,1 @@
+web:ts-node/packages/api/dist/main.js
