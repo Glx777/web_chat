@@ -2,6 +2,8 @@ import React, { ReactElement } from "react"
 import styled from "styled-components"
 import { Form, Formik, FormikProps, FormikHelpers } from "formik"
 
+import { t } from "../i18n/i18n"
+
 interface Props {
   from: string
   to: string
@@ -64,14 +66,14 @@ export const ChatControls = ({
       initialValues={initialValues}
       onSubmit={handleSubmit}
       component={(formikBag: FormikProps<ChatInput>): ReactElement => (
-        <Container translate={{}}>
+        <Container>
           <StyledInput
             name="text"
             value={formikBag.values.text}
             onChange={formikBag.handleChange}
           />
 
-          <SendButton type="submit">Send</SendButton>
+          <SendButton type="submit">{t("chat.send")}</SendButton>
         </Container>
       )}
     />

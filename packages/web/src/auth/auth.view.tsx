@@ -4,6 +4,7 @@ import { FormikProps, Form } from "formik"
 
 import { AuthInput, FormTypes } from "./auth.form"
 import { Input } from "./input"
+import { t } from "../i18n/i18n"
 
 type Props = FormikProps<AuthInput> & {
   activeForm: FormTypes
@@ -14,6 +15,11 @@ enum ButtonTypes {
   "button" = "button",
   "submit" = "submit",
   "reset" = "reset",
+}
+
+enum InputTypes {
+  "text" = "text",
+  "password" = "password",
 }
 
 const Container = styled.div`
@@ -49,9 +55,9 @@ export const AuthView = ({
   const getText = (): string => {
     switch (activeForm) {
       case FormTypes.SIGN_IN:
-        return "Sign in"
+        return t("auth.signIn")
       case FormTypes.SIGN_UP:
-        return "Sign up"
+        return t("auth.signUp")
     }
   }
 
@@ -70,22 +76,22 @@ export const AuthView = ({
   }
 
   return (
-    <Form translate={{}}>
+    <Form>
       <Container>
         <h1>{getText()}</h1>
 
         <Input
-          label="Username"
+          label={t("auth.username")}
           name="username"
-          type="text"
+          type={InputTypes.text}
           value={formikBag.values.username}
           {...formikBag}
         />
 
         <Input
-          label="Password"
+          label={t("auth.password")}
           name="password"
-          type="password"
+          type={InputTypes.password}
           value={formikBag.values.password}
           {...formikBag}
         />
@@ -95,13 +101,13 @@ export const AuthView = ({
             type={getButtonType(FormTypes.SIGN_IN)}
             onClick={(): void => getOnClickHandler(FormTypes.SIGN_IN)}
           >
-            Sign in
+            {t("auth.signIn")}
           </StyledButton>
           <StyledButton
             type={getButtonType(FormTypes.SIGN_UP)}
             onClick={(): void => getOnClickHandler(FormTypes.SIGN_UP)}
           >
-            Sign up
+            {t("auth.signUp")}
           </StyledButton>
         </ButtonsContainer>
       </Container>

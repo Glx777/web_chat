@@ -5,7 +5,7 @@ export interface User {
   id: string
   username: string
 }
-``
+
 export const useAuth = (): User | undefined => {
   const [user, setUser] = useState<User>()
   const token = Cookies.get("token")

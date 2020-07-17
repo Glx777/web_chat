@@ -4,6 +4,7 @@ import Cookies from "js-cookie"
 
 import { AuthInputSchema } from "../validation-schemas/auth"
 import { toast } from "../core/toast"
+import { t } from "../i18n/i18n"
 
 import { AuthView } from "./auth.view"
 
@@ -41,7 +42,7 @@ const signInAsync = async (values: FormikValues): Promise<void> => {
 
     if (data.token) {
       Cookies.set("token", data.token)
-      toast.success("Success")
+      toast.success(t("general.success"))
       window.location.reload()
     }
   } catch (error) {
@@ -78,7 +79,7 @@ export const AuthForm = (): ReactElement => {
         body: JSON.stringify(values),
       })
 
-      toast.success("Success")
+      toast.success(t("general.success"))
       handleFormSwitch(FormTypes.SIGN_IN, resetForm)
     } catch (error) {
       toast.error(error)

@@ -1,9 +1,14 @@
 {
   "name": "root",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+  "scripts": {
+    "client": "yarn workspace @web-chat/web start",
+    "api": "yarn workspace @web-chat/api start:dev",
+    "start": "concurrently --kill-others-on-fail \"yarn api\" \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "5.2.0"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
   }
 }

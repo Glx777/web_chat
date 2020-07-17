@@ -2,8 +2,6 @@ import { useState, useRef, useEffect } from "react"
 import socketIOClient, { Socket } from "socket.io-client"
 import Cookies from "js-cookie"
 
-import { useAuth } from "./use-auth"
-
 type Payload = [
   any[],
   (input: SendMessageInput) => void,
