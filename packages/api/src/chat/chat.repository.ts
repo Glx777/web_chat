@@ -10,7 +10,7 @@ export class ChatRepository extends Repository<Message> {
   async sendMessageAsync(
     sendMessageDTO: SendMessageInput,
   ): Promise<SendMessageDTO> {
-    return await this.save(sendMessageDTO)
+     return await this.save(sendMessageDTO)
   }
 
   async getMessagesAsync(input: GetMessagesInput): Promise<SendMessageDTO[]> {

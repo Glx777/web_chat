@@ -5,7 +5,7 @@ export interface User {
   id: string
   username: string
 }
-
+``
 export const useAuth = (): User | undefined => {
   const [user, setUser] = useState<User>()
   const token = Cookies.get("token")
@@ -36,6 +36,8 @@ export const useAuth = (): User | undefined => {
     if (token && !user) {
       getUserAsync()
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return user

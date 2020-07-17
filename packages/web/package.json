@@ -1,18 +1,18 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "@web-chat/web",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.3.2",
     "@testing-library/user-event": "7.1.2",
-    "formik": "^2.1.4",
+    "formik": "2.1.4",
     "js-cookie": "2.2.1",
-    "normalize.css": "^8.0.1",
+    "normalize.css": "8.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-scripts": "3.4.1",
-    "react-toastify": "^6.0.8",
+    "react-toastify": "6.0.8",
     "socket.io": "2.3.0",
     "styled-components": "5.1.1",
     "yup": "0.29.1"
@@ -48,8 +48,8 @@
     "@types/socket.io-client": "1.4.33",
     "@types/styled-components": "5.1.0",
     "@types/yup": "0.29.3",
-    "@typescript-eslint/eslint-plugin": "^3.6.0",
-    "@typescript-eslint/parser": "^3.6.0",
+    "@typescript-eslint/eslint-plugin": "3.6.0",
+    "@typescript-eslint/parser": "3.6.0",
     "eslint": "7.4.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-filenames": "1.3.2",
@@ -60,11 +60,18 @@
     "eslint-plugin-optimize-regex": "1.2.0",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react": "7.20.3",
     "eslint-plugin-react-hooks": "4.0.5",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-unicorn": "20.1.0",
     "prettier": "2.0.5",
-    "typescript": "3.5.3"
+    "typescript": "3.9.6"
+  },
+  "workspaces": {
+      "nohoist": [
+        "next",
+        "next/**",
+        "**/*"
+      ]
   }
 }
