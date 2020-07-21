@@ -2,7 +2,7 @@ import React, { ReactElement } from "react"
 import styled from "styled-components"
 import { Form, Formik, FormikProps, FormikHelpers } from "formik"
 
-import { t } from "../i18n/i18n"
+import { t } from "../../i18n/i18n"
 
 interface Props {
   from: string

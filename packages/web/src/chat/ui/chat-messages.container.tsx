@@ -37,8 +37,10 @@ export const ChatMessagesContainer = ({
             switch (message.from) {
               case selectedUser.id:
                 return selectedUser.username
+
               case user.id:
                 return user.username
+
               default:
                 return ""
             }

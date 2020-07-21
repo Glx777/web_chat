@@ -2,9 +2,10 @@ import React, { ReactElement } from "react"
 import styled from "styled-components"
 import { FormikProps, Form } from "formik"
 
+import { t } from "../../i18n/i18n"
+
 import { AuthInput, FormTypes } from "./auth.form"
 import { Input } from "./input"
-import { t } from "../i18n/i18n"
 
 type Props = FormikProps<AuthInput> & {
   activeForm: FormTypes
@@ -56,6 +57,7 @@ export const AuthView = ({
     switch (activeForm) {
       case FormTypes.SIGN_IN:
         return t("auth.signIn")
+
       case FormTypes.SIGN_UP:
         return t("auth.signUp")
     }

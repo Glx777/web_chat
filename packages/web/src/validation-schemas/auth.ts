@@ -4,13 +4,13 @@ export const AuthInputSchema = yup.object().shape({
   username: yup
     .string()
     .ensure()
-    .required("Username is required")
-    .matches(/^\S*$/, "Spaces are forbidden"),
+    .required("general.errors.required")
+    .matches(/^\S*$/, "general.errors.spacesForbid"),
   password: yup
     .string()
     .ensure()
-    .required("Password is required")
-    .matches(/^\S*$/, "Spaces are forbidden")
-    .min(6, "Password is too short")
-    .max(18, "Password is too long"),
+    .required("general.errors.required")
+    .matches(/^\S*$/, "general.errors.spacesForbid")
+    .min(6, "general.errors.passwordIsTooShort")
+    .max(18, "general.errors.passwordIsTooLong"),
 })

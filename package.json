@@ -1,14 +1,34 @@
 {
   "name": "root",
-  "scripts": {
-    "client": "yarn workspace @web-chat/web start",
-    "api": "yarn workspace @web-chat/api start:dev",
-    "start": "concurrently --kill-others-on-fail \"yarn api\" \"yarn client\""
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
-  "dependencies": {
-    "concurrently": "5.2.0"
+  "scripts": {
+    "client": "yarn workspace @web-chat/web dev",
+    "api": "yarn workspace @web-chat/api start:dev"
   },
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "@typescript-eslint/eslint-plugin": "3.7.0",
+    "@typescript-eslint/parser": "3.7.0",
+    "eslint": "7.5.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-filenames": "1.3.2",
+    "eslint-plugin-jest": "23.18.0",
+    "eslint-plugin-lodash": "7.1.0",
+    "eslint-plugin-no-secrets": "0.6.8",
+    "eslint-plugin-optimize-regex": "1.2.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "4.0.8",
+    "eslint-plugin-security": "1.4.0",
+    "eslint-plugin-sql": "1.1.1",
+    "eslint-plugin-unicorn": "21.0.0",
+    "prettier": "2.0.5",
+    "typescript": "3.9.7"
   }
 }

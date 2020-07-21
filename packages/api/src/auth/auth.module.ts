@@ -8,6 +8,7 @@ import { AuthService } from "./auth.service"
 import { AuthController } from "./auth.controller"
 import { User } from "./user.entity"
 import { UserRepository } from "./user.repository"
+
 import { JwtStrategy } from "./jwt.strategy"
 
 @Module({

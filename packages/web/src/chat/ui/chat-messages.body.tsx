@@ -2,6 +2,7 @@ import React, { ReactElement } from "react"
 import styled from "styled-components"
 
 import { ChatMessagesContainer } from "./chat-messages.container"
+import { t } from "../../i18n/i18n"
 
 interface Props {
   selectedUser: { id: string; username: string }
@@ -22,7 +23,9 @@ export const ChatMessagesBody = ({
   user,
 }: Props): ReactElement => (
   <Container>
-    <h1>Chatting with {selectedUser.username}</h1>
+    <h1>
+      {t("chat.chattingWith")} {selectedUser.username}
+    </h1>
     <ChatMessagesContainer
       messages={messages}
       user={user}

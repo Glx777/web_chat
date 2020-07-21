@@ -1,7 +1,8 @@
 import React, { ReactElement, Dispatch, SetStateAction } from "react"
 import styled from "styled-components"
 
-import { useAuth, User } from "../hooks/use-auth"
+import { useAuth, User } from "../../hooks/use-auth"
+import { t } from "../../i18n/i18n"
 
 import { UserItem } from "./user.item"
 import { LogoutButton } from "./logout.button"
@@ -40,7 +41,7 @@ export const UsersContainer = ({
 
   return (
     <Container>
-      <h1>Users</h1>
+      <h1>{t("chat.title")}</h1>
       <UsersList>
         {users &&
           currentUser &&

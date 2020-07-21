@@ -2,6 +2,8 @@ import React, { ReactElement } from "react"
 import styled from "styled-components"
 import { ErrorMessage, FormikProps } from "formik"
 
+import { t } from "../../i18n/i18n"
+
 import { AuthInput } from "./auth.form"
 
 type Props = FormikProps<AuthInput> & {
@@ -56,7 +58,9 @@ export const Input = ({
     />
 
     <StyledErrorMessage>
-      <ErrorMessage name={name} />
+      <ErrorMessage name={name}>
+        {(message: string): ReactElement => <span>{t(message)}</span>}
+      </ErrorMessage>
     </StyledErrorMessage>
   </Container>
 )

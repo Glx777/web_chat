@@ -2,9 +2,9 @@ import React, { ReactElement, useState, useEffect, Fragment } from "react"
 import styled from "styled-components"
 import Cookies from "js-cookie"
 
-import { toast } from "../core/toast"
-import { useAuth, User } from "../hooks/use-auth"
-import { useChat } from "../hooks/use-chat"
+import { toast } from "../../core/toast"
+import { useAuth, User } from "../../hooks/use-auth"
+import { useChat } from "../../hooks/use-chat"
 
 import { UsersContainer } from "./users-container"
 import { ChatContainer } from "./chat-container"
@@ -12,8 +12,8 @@ import { ChatControls } from "./chat-controls"
 import { ChatMessagesBody } from "./chat-messages.body"
 
 const Container = styled.div`
-  min-width: 80%;
-  max-width: 80%;
+  min-width: 80vw;
+  max-width: 80vw;
   min-height: 80vh;
   max-height: 80vh;
   background: white;

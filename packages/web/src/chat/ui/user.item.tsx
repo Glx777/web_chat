@@ -1,7 +1,7 @@
 import React, { ReactElement, Dispatch, SetStateAction } from "react"
 import styled from "styled-components"
 
-import { User } from "../hooks/use-auth"
+import { User } from "../../hooks/use-auth"
 
 interface ListItemProps {
   isSelected?: boolean

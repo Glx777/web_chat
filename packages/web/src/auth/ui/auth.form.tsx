@@ -1,10 +1,12 @@
 import React, { ReactElement, useState } from "react"
 import { Formik, FormikValues, FormikProps, FormikHelpers } from "formik"
 import Cookies from "js-cookie"
+import { useRouter } from "next/dist/client/router"
 
-import { AuthInputSchema } from "../validation-schemas/auth"
-import { toast } from "../core/toast"
-import { t } from "../i18n/i18n"
+import { AuthInputSchema } from "../../validation-schemas/auth"
+import { toast } from "../../core/toast"
+import { t } from "../../i18n/i18n"
+import { routes } from "../../routes"
 
 import { AuthView } from "./auth.view"
 
@@ -23,35 +25,36 @@ const initialValues: AuthInput = {
   password: "",
 }
 
-const signInAsync = async (values: FormikValues): Promise<void> => {
-  try {
-    const response = await fetch("http://localhost:5000/auth/signIn", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify(values),
-    })
-
-    const data = await response.json()
-
-    if (data.token) {
-      Cookies.set("token", data.token)
-      toast.success(t("general.success"))
-      window.location.reload()
-    }
-  } catch (error) {
-    toast.error(error)
-  }
-}
-
 export const AuthForm = (): ReactElement => {
+  const router = useRouter()
   const [activeForm, setActiveForm] = useState<FormTypes>(FormTypes.SIGN_IN)
+
+  const signInAsync = async (values: FormikValues): Promise<void> => {
+    try {
+      const response = await fetch("http://localhost:5000/auth/signIn", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(values),
+      })
+
+      const data = await response.json()
+
+      if (data.token) {
+        Cookies.set("token", data.token)
+        toast.success(t("general.success"))
+        router.push(routes.chat)
+      }
+    } catch (error) {
+      toast.error(error)
+    }
+  }
 
   const handleFormSwitch = (
     formType: FormTypes,
@@ -95,6 +98,7 @@ export const AuthForm = (): ReactElement => {
     switch (activeForm) {
       case FormTypes.SIGN_IN:
         return signInAsync
+
       case FormTypes.SIGN_UP:
         return signUpAsync
     }

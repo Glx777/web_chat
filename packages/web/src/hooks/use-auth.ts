@@ -12,7 +12,7 @@ export const useAuth = (): User | undefined => {
 
   useEffect((): void => {
     const getUserAsync = async (): Promise<void> => {
-      const response = await fetch(`http://localhost:5000/auth/me`, {
+      const response = await fetch("http://localhost:5000/auth/me", {
         method: "GET",
         mode: "cors",
         cache: "no-cache",
