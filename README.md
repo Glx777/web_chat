@@ -1,5 +1,5 @@
 <div align="center">
-  Web chat
+  <h1>Web chat</h1>
 </div>
 
 ## Installing
