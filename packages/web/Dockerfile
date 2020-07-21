@@ -1,20 +1,20 @@
 FROM node:14.5.0
 
-WORKDIR /usr/src/app/
+WORKDIR /usr/src/
 
-COPY ./packages/web/package.json ./packages/web/
+COPY package.json yarn.lock /usr/src/
+COPY packages/web/package.json /usr/src/packages/web/
 
-WORKDIR /usr/src/app/packages/web/
+RUN yarn
 
-RUN yarn install --production
+COPY ./packages/web/ ./packages/web/
 
-COPY . ../../packages/web/
-
-ENV NODE_ENV production
+WORKDIR /usr/src/packages/web/
 
 RUN yarn build
 
-EXPOSE 4000
-EXPOSE 5000
+ENV NODE_ENV production
 
-CMD ["yarn", "start:prod"]
+EXPOSE 3000
+
+CMD ["yarn", "start"]

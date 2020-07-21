@@ -1,14 +1,15 @@
 FROM node:14.5.0
 
-WORKDIR /usr/src/app/
+WORKDIR /usr/src/
 
-COPY ./packages/api/package.json ./packages/api/
+COPY package.json yarn.lock /usr/src/
+COPY packages/api/package.json packages/api/.env /usr/src/packages/api/
 
-WORKDIR /usr/src/app/packages/api/
+RUN yarn
 
-RUN yarn install --production
+COPY ./packages/api/ ./packages/api/
 
-COPY . ../../packages/api/
+WORKDIR /usr/src/packages/api/
 
 RUN yarn build
 
